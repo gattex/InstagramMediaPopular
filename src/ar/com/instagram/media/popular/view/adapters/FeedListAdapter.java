@@ -4,10 +4,8 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
-import android.text.Html;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
-import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,7 +62,6 @@ public class FeedListAdapter extends BaseAdapter {
                 .findViewById(R.id.timestamp);
         TextView statusMsg = (TextView) convertView
                 .findViewById(R.id.txtStatusMsg);
-        TextView url = (TextView) convertView.findViewById(R.id.txtUrl);
         NetworkImageView profilePic = (NetworkImageView) convertView
                 .findViewById(R.id.profilePic);
         FeedImageView feedImageView = (FeedImageView) convertView
@@ -87,19 +84,6 @@ public class FeedListAdapter extends BaseAdapter {
         } else {
             // status is empty, remove from view
             statusMsg.setVisibility(View.GONE);
-        }
- 
-        // Checking for null feed url
-        if (item.getUrl() != null) {
-            url.setText(Html.fromHtml("<a href=\"" + item.getUrl() + "\">"
-                    + item.getUrl() + "</a> "));
- 
-            // Making url clickable
-            url.setMovementMethod(LinkMovementMethod.getInstance());
-            url.setVisibility(View.VISIBLE);
-        } else {
-            // url is null, remove from the view
-            url.setVisibility(View.GONE);
         }
  
         // user profile pic

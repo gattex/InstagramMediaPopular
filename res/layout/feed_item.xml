@@ -63,16 +63,6 @@
             android:paddingRight="@dimen/feed_item_status_pad_left_right"
             android:paddingTop="@dimen/feed_item_status_pad_top" />
  
-        <TextView
-            android:id="@+id/txtUrl"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:linksClickable="true"
-            android:paddingBottom="10dp"
-            android:paddingLeft="@dimen/feed_item_status_pad_left_right"
-            android:paddingRight="@dimen/feed_item_status_pad_left_right"
-            android:textColorLink="@color/link" />
- 
         <ar.com.instagram.media.popular.view.widgets.FeedImageView
             android:id="@+id/feedImage1"
             android:layout_width="match_parent"
@@ -80,6 +70,31 @@
             android:background="@color/white"
             android:scaleType="fitXY"
             android:visibility="visible" />
+         
+ 		<LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/feed_item_padding_left_right"
+            android:paddingRight="@dimen/feed_item_padding_left_right" >
+
+			<ImageView
+        		android:id="@+id/iconLike"
+        		android:layout_width="wrap_content"
+        		android:layout_height="wrap_content"
+        		android:src="@drawable/ic_launcher"
+        		android:layout_weight="0.9"
+        		 />
+        	
+        	<ImageView
+        		android:id="@+id/iconShare"
+        		android:layout_width="wrap_content"
+        		android:layout_height="wrap_content"
+        		android:src="@drawable/ic_launcher" 
+				android:layout_weight="0.1"/>
+
+        </LinearLayout>
+
     </LinearLayout>
  
 </LinearLayout>

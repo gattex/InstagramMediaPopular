@@ -13,7 +13,9 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 import ar.com.instagram.media.popular.model.FeedItem;
 import ar.com.instagram.media.popular.network.AppController;
 import ar.com.instagram.media.popular.view.adapters.FeedListAdapter;
@@ -45,6 +47,15 @@ public class MainActivity extends Activity {
  
         listAdapter = new FeedListAdapter(this, feedItems);
         listView.setAdapter(listAdapter);
+        
+        final SwipeRefreshLayout mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.activity_main_swipe_refresh_layout);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                 Toast.makeText(MainActivity.this, "se refresco", Toast.LENGTH_SHORT).show();
+                 mSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
          
         // These two lines not needed,
         // just to get the look of facebook (changing background color & hiding the icon)
