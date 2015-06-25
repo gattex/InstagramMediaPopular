@@ -21,15 +21,9 @@ public class InstagramSession {
 		mContext	= context;
 		mSharedPref = context.getSharedPreferences(SHARED, Context.MODE_PRIVATE);
 	}
-	
-	/**
-	 * Save user data
-	 * 
-	 * @param user User data
-	 */
+
 	public void store(InstagramUser user) {
 		Editor editor = mSharedPref.edit();
-		
 		editor.putString(ACCESS_TOKEN,  user.accessToken);
 		editor.putString(USERID, 		user.id);
 		editor.putString(USERNAME, 		user.username);
@@ -39,9 +33,6 @@ public class InstagramSession {
 		editor.commit();
 	}
 	
-	/**
-	 * Reset user data
-	 */
 	public void reset() {
 		Editor editor = mSharedPref.edit();
 		
@@ -59,11 +50,6 @@ public class InstagramSession {
 		cookieManager.removeAllCookie();
 	}
 	
-	/**
-	 * Get user data
-	 * 
-	 * @return User data
-	 */
 	public InstagramUser getUser() {
 		if (mSharedPref.getString(ACCESS_TOKEN, "").equals("")) {
 			return null;
@@ -80,20 +66,10 @@ public class InstagramSession {
 		return user;
 	}
 	
-	/**
-	 * Get access token
-	 * 
-	 * @return Access token
-	 */
 	public String getAccessToken() {
 		return mSharedPref.getString(ACCESS_TOKEN, "");
 	}
 	
-	/**
-	 * Check if ther is an active session.
-	 * 
-	 * @return true if active and vice versa
-	 */
 	public boolean isActive() {
 		return (mSharedPref.getString(ACCESS_TOKEN, "").equals("")) ? false : true;
 	}

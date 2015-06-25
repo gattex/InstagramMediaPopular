@@ -23,12 +23,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import ar.com.instagram.media.popular.R;
 
-/**
- * Authentication and authorization dialog.
- * 
- * @author Lorensius W. L. T <lorenz@londatiga.net>
- *
- */
 @SuppressLint({ "NewApi", "SetJavaScriptEnabled" })
 public class InstagramDialog extends Dialog {
 	private ProgressDialog mSpinner;
