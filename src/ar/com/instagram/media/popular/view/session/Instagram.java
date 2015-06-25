@@ -24,7 +24,7 @@ public class Instagram {
 	private String mClientId;
 	private String mClientSecret;
 	private String mRedirectUri;
-
+	
 	public Instagram(Context context, String clientId, String clientSecret,
 			String redirectUri) {
 		mContext = context;
@@ -39,7 +39,6 @@ public class Instagram {
 
 		mDialog = new InstagramDialog(context, authUrl, redirectUri,
 				new InstagramDialog.InstagramDialogListener() {
-
 					@Override
 					public void onSuccess(String code) {
 						retreiveAccessToken(code);
