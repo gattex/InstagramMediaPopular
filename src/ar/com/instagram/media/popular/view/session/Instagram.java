@@ -8,12 +8,11 @@ import org.json.JSONObject;
 import android.app.ProgressDialog;
 import android.content.Context;
 import ar.com.instagram.media.popular.network.AppController;
+import ar.com.instagram.media.popular.view.session.configurations.InstagramURL;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request.Method;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 
 public class Instagram {
 	private Context mContext;
@@ -34,7 +33,7 @@ public class Instagram {
 		mClientSecret = clientSecret;
 		mRedirectUri = redirectUri;
 
-		String authUrl = Cons.AUTH_URL + "client_id=" + mClientId + "&redirect_uri=" + mRedirectUri + "&response_type=code";
+		String authUrl = InstagramURL.AUTH_URL.val() + "client_id=" + mClientId + "&redirect_uri=" + mRedirectUri + "&response_type=code";
 
 		mSession = new InstagramSession(context);
 
@@ -79,51 +78,48 @@ public class Instagram {
 		final ProgressDialog progressDlg = new ProgressDialog(mContext);
 		progressDlg.setMessage("Getting access token...");
 		final InstagramUser user = new InstagramUser();
-		JsonObjectRequest jsonReq = new JsonObjectRequest(
-				Method.GET, Cons.ACCESS_TOKEN_URL,(String) null, 
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("client_id", mClientId);
+		params.put("client_secret", mClientSecret);
+		params.put("grant_type", "authorization_code");
+		params.put("redirect_uri", mRedirectUri);
+		params.put("code", code);
+
+		InstagramRequest jsonReq = new InstagramRequest(Method.POST,
+				InstagramURL.ACCESS_TOKEN_URL.val(), params,
 				new Response.Listener<JSONObject>() {
 					@Override
 					public void onResponse(JSONObject response) {
 						if (response != null) {
-							try{
-								JSONObject jsonUser = response.getJSONObject("user");
-								user.accessToken = response.getString("access_token");
+							try {
+								JSONObject jsonUser = response
+										.getJSONObject("user");
+								user.accessToken = response
+										.getString("access_token");
 								user.id = jsonUser.getString("id");
 								user.username = jsonUser.getString("username");
 								user.fullName = jsonUser.getString("full_name");
-								user.profilPicture = jsonUser.getString("profile_picture");
+								user.profilPicture = jsonUser
+										.getString("profile_picture");
 								mSession.store(user);
 								mListener.onSuccess(user);
-							}catch(Exception e){
-								mListener.onError("Failed to get access token");
-							}finally{
+							} catch (Exception e) {
+								mListener.onError("bien " + e.getMessage());
+							} finally {
 								progressDlg.dismiss();
 							}
 						}
 					}
-				}, 
-				new Response.ErrorListener() {
+				}, new Response.ErrorListener() {
 					@Override
 					public void onErrorResponse(VolleyError error) {
-						mListener.onError("Failed to get access token");
+						mListener.onError("mal " + error.getMessage());
 					}
-				}
-		){
-			@Override
-			protected Map<String, String> getParams() throws AuthFailureError {
-				Map<String,String> params = new HashMap<String, String>();
-				params.put("client_id", mClientId);
-				params.put("client_secret",	mClientSecret);
-				params.put("grant_type","authorization_code");
-				params.put("redirect_uri", mRedirectUri);
-				params.put("code", code);
-				return params;
-			}
-			
-		};
+				});
+
 		AppController.getInstance().addToRequestQueue(jsonReq);
 	}
-	
+
 	public interface InstagramAuthListener {
 		public abstract void onSuccess(InstagramUser user);
 
