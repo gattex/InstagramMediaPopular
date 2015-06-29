@@ -4,11 +4,10 @@
     android:layout_height="match_parent"
     android:background="@color/feed_bg"
     android:orientation="vertical" >
- 
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
- 
         android:layout_marginLeft="@dimen/feed_item_margin"
         android:layout_marginRight="@dimen/feed_item_margin"
         android:layout_marginTop="@dimen/feed_item_margin"
@@ -16,35 +15,35 @@
         android:orientation="vertical"
         android:paddingBottom="@dimen/feed_item_padding_top_bottom"
         android:paddingTop="@dimen/feed_item_padding_top_bottom" >
- 
+
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingLeft="@dimen/feed_item_padding_left_right"
             android:paddingRight="@dimen/feed_item_padding_left_right" >
- 
+
             <com.android.volley.toolbox.NetworkImageView
                 android:id="@+id/profilePic"
                 android:layout_width="@dimen/feed_item_profile_pic"
                 android:layout_height="@dimen/feed_item_profile_pic"
                 android:scaleType="fitCenter" >
             </com.android.volley.toolbox.NetworkImageView>
- 
+
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingLeft="@dimen/feed_item_profile_info_padd" 
-                android:paddingRight="@dimen/feed_item_padding_left_right">
- 
+                android:paddingLeft="@dimen/feed_item_profile_info_padd"
+                android:paddingRight="@dimen/feed_item_padding_left_right" >
+
                 <TextView
                     android:id="@+id/name"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/feed_item_profile_name"
                     android:textStyle="bold" />
- 
+
                 <TextView
                     android:id="@+id/timestamp"
                     android:layout_width="fill_parent"
@@ -53,48 +52,54 @@
                     android:textSize="@dimen/feed_item_timestamp" />
             </LinearLayout>
         </LinearLayout>
- 
+
         <TextView
-            android:id="@+id/txtStatusMsg"
+            android:id="@+id/likesCount"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="5dp"
             android:paddingLeft="@dimen/feed_item_status_pad_left_right"
             android:paddingRight="@dimen/feed_item_status_pad_left_right"
-            android:paddingTop="@dimen/feed_item_status_pad_top" />
- 
+            android:paddingTop="@dimen/feed_item_status_pad_top" 
+     		android:textColor="#125688"
+            />
+
         <ar.com.instagram.media.popular.view.widgets.FeedImageView
             android:id="@+id/feedImage1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:scaleType="fitXY"
-            android:visibility="visible" />
-         
- 		<LinearLayout
+            android:visibility="gone" />
+
+        <VideoView
+            android:id="@+id/feedVideo1"
+            android:layout_width="match_parent"
+            android:layout_height="190dip"
+            android:background="#0000"
+            android:visibility="gone" />
+
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingLeft="@dimen/feed_item_padding_left_right"
             android:paddingRight="@dimen/feed_item_padding_left_right" >
 
-			<ImageView
-        		android:id="@+id/iconLike"
-        		android:layout_width="wrap_content"
-        		android:layout_height="wrap_content"
-        		android:src="@drawable/ic_launcher"
-        		android:layout_weight="0.9"
-        		 />
-        	
-        	<ImageView
-        		android:id="@+id/iconShare"
-        		android:layout_width="wrap_content"
-        		android:layout_height="wrap_content"
-        		android:src="@drawable/ic_launcher" 
-				android:layout_weight="0.1"/>
+<!--             <ImageView -->
+<!--                 android:id="@+id/iconLike" -->
+<!--                 android:layout_width="wrap_content" -->
+<!--                 android:layout_height="wrap_content" -->
+<!--                 android:layout_weight="0.9" -->
+<!--                 android:src="@drawable/ic_launcher" /> -->
 
+<!--             <ImageView -->
+<!--                 android:id="@+id/iconShare" -->
+<!--                 android:layout_width="wrap_content" -->
+<!--                 android:layout_height="wrap_content" -->
+<!--                 android:layout_weight="0.1" -->
+<!--                 android:src="@drawable/ic_launcher" /> -->
         </LinearLayout>
-
     </LinearLayout>
- 
+
 </LinearLayout>

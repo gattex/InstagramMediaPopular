@@ -2,23 +2,16 @@ package ar.com.instagram.media.popular.model;
 
 public class FeedItem {
     private int id;
-    private String name, status, image, profilePic, timeStamp, url;
+    private String name, status, mediaUrl, profilePic, timeStamp, url,type, countLikes;
  
-    public FeedItem() {
-    }
- 
-    public FeedItem(int id, String name, String image, String status,
-            String profilePic, String timeStamp, String url) {
-        super();
-        this.id = id;
-        this.name = name;
-        this.image = image;
-        this.status = status;
-        this.profilePic = profilePic;
-        this.timeStamp = timeStamp;
-        this.url = url;
-    }
- 
+    public String getType() {
+		return type;
+	}
+    
+    public void setType(String type) {
+		this.type = type;
+	}
+    
     public int getId() {
         return id;
     }
@@ -34,14 +27,14 @@ public class FeedItem {
     public void setName(String name) {
         this.name = name;
     }
- 
-    public String getImge() {
-        return image;
-    }
- 
-    public void setImge(String image) {
-        this.image = image;
-    }
+    
+    public String getMediaUrl() {
+		return mediaUrl;
+	}
+    
+    public void setMediaUrl(String mediaUrl) {
+		this.mediaUrl = mediaUrl;
+	}
  
     public String getStatus() {
         return status;
@@ -74,4 +67,12 @@ public class FeedItem {
     public void setUrl(String url) {
         this.url = url;
     }
+    
+    public void setCountLikes(String countLikes) {
+		this.countLikes = countLikes;
+	}
+    
+    public String getCountLikes() {
+		return countLikes;
+	}
 }
